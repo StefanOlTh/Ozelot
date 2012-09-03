@@ -1,37 +1,24 @@
+// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
+Page {
+    id: showServerListWindow
 
-
-
-PageStackWindow {
-    id: appWindow
-
-    initialPage: mainPage
-
-    MainPage {
-        id: mainPage
-    }
-
+    tools: commonShowServerListTools
 
     ToolBarLayout {
-        id: commonTools
+        id: commonShowServerListTools
         visible: true
 
         ToolIcon {
             platformIconId: "icon-m-toolbar-back"
             anchors.left: (parent === undefined) ? undefined : parent.left
           onClicked: {
-              pageStack.push(Qt.resolvedUrl("ExitPage.qml"))
+              pageStack.pop()
           }
         }
 
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-directory"
-          onClicked: {
-              pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
-          }
-        }
 
         ToolIcon {
             platformIconId: "icon-m-toolbar-mediacontrol-play"
@@ -47,16 +34,10 @@ PageStackWindow {
         }
     }
 
-    Menu {
-        id: mySettingMenu
-        visualParent: pageStack
-        MenuLayout {
-            MenuItem { text: qsTr("Settings") }
-            MenuItem {
-                text: qsTr("About")
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-        }
-    }
 
+    Label {
+        id: label
+        anchors.centerIn: parent
+        text: qsTr("This is the list")
+    }
 }

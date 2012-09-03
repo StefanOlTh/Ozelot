@@ -4,6 +4,7 @@ import com.nokia.meego 1.0
 Page {
     tools: commonTools
 
+
     Label {
         id: label
         anchors.centerIn: parent
