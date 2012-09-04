@@ -8,82 +8,62 @@ Page {
 
     tools: myShowChangeLogPageToolBar
 
-    onRotationChanged: {
-        if ( screen.orientationString === "Portrait")
-        {
-            title.font.pixelSize = 55
-        }
-        else
-        {
-            title.font.pixelSize = 15
-        }
-    }
-
-    onVisibleChanged: {
-             if (visible) {
-                 //changeLogArea.text = Qt.resolvedUrl("changelog");
-                 // create component
-//                 console.log("Page content created.");
-//                 var object = componentDynamic.createObject(container);
-//                 containerObject = object;
-             }
-    }
-
-
 
     Rectangle {
         id: titleBackground
         color: "blue"
-        anchors.top: parent
+        anchors.top: parent.top
         width: parent.width
-        height: title.height
+        height: title.height * 2
+
+        Label {
+            id: title
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: 35; font.bold: false
+            color: "white"
+            text: qsTr("Change Log")
+            visible: true
+        }
     }
 
 
-    Label {
-        id: title
-        anchors.top: parent
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: 35; font.bold: false
-        color: "white"
-        text: qsTr("Change Log")
-        visible: true
-    }
 
-    ListView {
-         id: list
-         anchors.top: title.bottom
-         width: parent.width
-         highlight: highlight
-         highlightFollowsCurrentItem: false
-         focus: true
 
-         Text {
-             id: changeLogArea
-             visible: true
-             textFormat: Text.RichText
-             anchors.top: title.bottom
-             width: parent.width
-             wrapMode: TextEdit.Wrap
-             font.pixelSize: 20; font.bold: false
-     //        text: ""
-             text: qsTr("Change Log textd<br><a href=\"http://www.dn.se\">Nokia Qt DF</a><br><br>ksäksfäö<br>kgkhjslgjhlö<br>gfhlöfjglö<br>kjlökgas<br>klö<br>fjdasklö<br>djf<br>asj<br>fklöasjdf<br>klö<br>asjdf<br>klöasj<br>dfjd<br>aklö<br>sjdfklöasj<br>dfklöas<br>jdfk<br>löa<br>sjdfkl<br>öj<br>fa<br>sd<br>flökasjdflö<br>kasjdfaslödfjlöaksjdfl<br>ökasjoöjafdog<br>iöreoptopwerutq839u569+8n +t8wuq+tu<br>awreoptjcaoprtjcamvrtå0å0aåw0tmav4utmåwu4m åsetåpjgfdjoösfdjgopifdub9p8fdy4u39p åughuå0adlögjardopgjaorpgjaioprjegopiasjglökasfjdgklöjafdlökgjalöjkgalöskfjdlöaskjdölakgjaödgaölfjdfögaogha9pdfgypauöeorga")
-         }
-     }
+         TextEdit  {
+            id: changeLogArea
+            anchors.top: titleBackground.bottom
+            width: parent.width
+            height: 300
+            text: "1\n1\n1\n1\n2\n1\n1\n1\n1\n1\n3\n1\n1\n1\n4\n1\n1\n1\n1\n5\n1\n1\n1\n6\n1\n1\n1\n7\n1\n1\n1\n8\n\n\n\n\n9"
+            font.pixelSize: 20
+            textFormat: TextEdit.AutoText
+            readOnly: true
+            wrapMode: TextEdit.WordWrap
 
-/*
-    Text {
-        id: changeLogArea
-        visible: true
-        textFormat: Text.RichText
-        anchors.top: title.bottom
-        width: parent.width
-        wrapMode: TextEdit.Wrap
-        font.pixelSize: 20; font.bold: false
-//        text: ""
-        text: qsTr("Change Log textd<br><a href=\"http://www.dn.se\">Nokia Qt DF</a><br><br>ksäksfäö<br>kgkhjslgjhlö<br>gfhlöfjglö<br>kjlökgas<br>klö<br>fjdasklö<br>djf<br>asj<br>fklöasjdf<br>klö<br>asjdf<br>klöasj<br>dfjd<br>aklö<br>sjdfklöasj<br>dfklöas<br>jdfk<br>löa<br>sjdfkl<br>öj<br>fa<br>sd<br>flökasjdflö<br>kasjdfaslödfjlöaksjdflökasjoöjafdogiöreoptopwerutq839u569+8n +t8wuq+tuawreoptjcaoprtjcamvrtå0å0aåw0tmav4utmåwu4m åsetåpjgfdjoösfdjgopifdub9p8fdy4u39p åughuå0adlögjardopgjaorpgjaioprjegopiasjglökasfjdgklöjafdlökgjalöjkgalöskfjdlöaskjdölakgjaödgaölfjdfögaogha9pdfgypauöeorga")
-    }
-*/
+    /*
+
+            Component.onCompleted: {
+                var doc = new XMLHttpRequest();
+                doc.onreadystatechange = function() {
+                    if (doc.readyState === XMLHttpRequest.DONE) {
+                        changeLogArea.text = changeLogArea.text + doc.responseText + "\n\n"
+    /*
+                        var a = doc.responseXML.documentElement;
+                        if (a !== null) {
+                            for (var ii = 0; ii < a.childNodes.length; ++ii) {
+                                if (a.childNodes[ii].nodeName === "body") {
+                                    changeLogArea.text = changeLogArea.text + a.childNodes[ii].firstChild.nodeValue;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                doc.open("GET", Qt.resolvedUrl("OzelotChangeLog.txt"))
+                doc.send();
+            }
+    */
+        }
 
 
     ToolBarLayout {

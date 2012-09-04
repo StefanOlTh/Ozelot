@@ -7,7 +7,7 @@ Version: 0.0.1
 Distribution: unstable
 Urgency: low
 Maintainer: unknown <>
-Changed-By: unknown <>
+Changed-By: Stefan Olsson <stefan.thorlacius@live.se>
 Description: 
  ozelot     - <insert up to 60 chars description>
 Changes: 
@@ -15,9 +15,9 @@ Changes:
  .
    * Initial Release.
 Checksums-Sha1: 
- eb48e13869e7433a5886af70bd2591acaead7596 17886 ozelot_0.0.1_armel.deb
+ 351e29106b54aa938c51733875a8b950981a0311 22162 ozelot_0.0.1_armel.deb
 Checksums-Sha256: 
- 1ca095d2de948bf7600e20407bd18736605f7c4a0981e585e7185591d614bb3c 17886 ozelot_0.0.1_armel.deb
+ 95258c52e3fcc55d0a61c4122b5b7eb44f9afbc2b1b92555800f4b7c9e8ab7fd 22162 ozelot_0.0.1_armel.deb
 Files: 
- 033b837046bd07acfb17491968a3f5d6 17886 user/other optional ozelot_0.0.1_armel.deb
+ ff706777f889397e76a563534a274dbe 22162 user/other optional ozelot_0.0.1_armel.deb
 Maemo-Display-Name: Ozelot
