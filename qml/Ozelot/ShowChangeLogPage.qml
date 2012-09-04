@@ -27,8 +27,6 @@ Page {
     }
 
 
-
-
          TextEdit  {
             id: changeLogArea
             anchors.top: titleBackground.bottom
