@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<language id="se" version="1.0">
+	<author>Stefan Olsson</author>
+	<date>2012-09-06 13:58</date>
+
+	<item id="1" tag="HelloWorld">
+		<body>Hej världen</body>
+		<comment> </comment>
+	</item>
+
+	<item id="2" tag="Server">
+		<body>Server</body>
+		<comment> </comment>
+	</item>
+
+	<item id="3" tag="Render">
+		<body>Spelare</body>
+		<comment> </comment>
+	</item>
+
+	<item id="4" tag="Settings">
+		<body>Inställningar</body>
+		<comment> </comment>
+	</item>
+
+	<item id="5" tag="About">
+		<body>Om</body>
+		<comment> </comment>
+	</item>
+
+</language>

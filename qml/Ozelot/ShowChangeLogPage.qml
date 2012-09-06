@@ -46,7 +46,8 @@ Page {
 */
                             }
                         }
-                doc.open("GET", Qt.resolvedUrl("OzelotChangeLog.txt"))
+//                doc.open("GET", Qt.resolvedUrl("OzelotChangeLog.txt"))
+                doc.open("GET", Qt.resolvedUrl("qrc:///OzelotChangeLog.txt"))
                 doc.send();
             }
             onLinkActivated: Qt.openUrlExternally(link)

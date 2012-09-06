@@ -32,12 +32,11 @@ Page {
                                 changeLogArea.text = changeLogArea.text + doc.responseText
                             }
                         }
-                doc.open("GET", Qt.resolvedUrl("copyright.txt"))
+                doc.open("GET", Qt.resolvedUrl("qrc:///copyright.txt"))
                 doc.send();
             }
             onLinkActivated: Qt.openUrlExternally(link)
         }
-
     }
 
     Rectangle {

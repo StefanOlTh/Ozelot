@@ -8,6 +8,17 @@ QML_IMPORT_PATH =
 
 symbian:TARGET.UID3 = 0xE67563F0
 
+# Extra libraries
+#
+#
+QT += xml
+
+#Resources
+#
+#
+RESOURCES     += resource/OzelotResources.qrc
+
+
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
 # fail to install if self-signed. By default qmake uses the unprotected
@@ -45,7 +56,10 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/copyright \
     qtc_packaging/debian_harmattan/control \
     qtc_packaging/debian_harmattan/compat \
-    qtc_packaging/debian_harmattan/changelog
+    qtc_packaging/debian_harmattan/changelog \
+    resource/OzelotChangeLog.txt \
+    resource/copyright.txt \
+    resource/copyright.txt
 
 HEADERS += \
     applicationdata.h \

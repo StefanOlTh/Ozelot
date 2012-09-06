@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>OzelotChangeLog.txt</file>
+        <file>copyright.txt</file>
+        <file>translation/language.xml</file>
+        <file>translation/language_sv.xml</file>
+        <file>translation/language_sv_SE.xml</file>
+    </qresource>
+</RCC>

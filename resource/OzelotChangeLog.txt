@@ -1,0 +1,7 @@
+<p><b>Ozelot</b> 1.0</p>unstable; urgency=low<br>
+<br>
+* Initial Release.<br>
+<br>
+ -- Stefan Olsson stefan.thorlacius@live.se Fri, 31 Aug 2012 11:52:11 +0200<br>
+
+http://developer.meego.com/api/1.2/qtmobility/index.html

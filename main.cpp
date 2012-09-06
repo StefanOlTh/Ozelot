@@ -4,19 +4,24 @@
 #include <QtGui/QApplication>
 #include "qmlapplicationviewer.h"
 #include "applicationdata.h"
+#include "translation.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
 
 
-    QmlApplicationViewer viewer;
+     QmlApplicationViewer viewer;
+     Translation myTranslation;
 
-    viewer.rootContext()->setContextProperty("myApplicationData", new ApplicationData);
+     viewer.rootContext()->setContextProperty("myApplicationData", new ApplicationData);
+     viewer.rootContext()->setContextProperty("myTranslation", &myTranslation);
 
-    viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer.setMainQmlFile(QLatin1String("qml/Ozelot/main.qml"));
-    viewer.showExpanded();
+     myTranslation.setLanguage(QLocale::system().name());
 
-    return app->exec();
+     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+     viewer.setMainQmlFile(QLatin1String("qml/Ozelot/main.qml"));
+     viewer.showExpanded();
+
+     return app->exec();
 }

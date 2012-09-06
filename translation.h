@@ -4,8 +4,8 @@
 #include <QObject>
 #include <QFile>
 #include <QTextStream>
-#include <QtXml>
-
+#include <QtXml/QXmlDefaultHandler>
+#include <QLibraryInfo>
 
 typedef struct
 {
@@ -18,56 +18,137 @@ typedef struct
 
 class AdSaxParser : public QXmlDefaultHandler
 {
+    enum MyStateType { NOTHING, LANGUAGE, AUTHOR, DATE, ITEM, BODY, COMMENT };
+
+
 public:
-  bool startDocument()
-  {
-    inAdBook = false;
-    return true;
-  }
-  bool endElement( const QString&, const QString&, const QString &name )
-  {
-    if( name == "adbook" )
-      inAdBook = false;
-
-    return true;
-  }
-
-  bool startElement( const QString&, const QString&, const QString &name, const QXmlAttributes &attrs )
-  {
-/*
-    if( inAdBook && name == "contact" )
+    bool startDocument()
     {
-      QString name, phone, email;
-
-      for( int i=0; i<attrs.count(); i++ )
-      {
-        if( attrs.localName( i ) == "name" )
-          name = attrs.value( i );
-        else if( attrs.localName( i ) == "phone" )
-          phone = attrs.value( i );
-        else if( attrs.localName( i ) == "email" )
-          email = attrs.value( i );
-      }
-
-      QMessageBox::information( 0, "Contact", name + "\n" + phone + "\n" + email );
+        myState = NOTHING;
+        return true;
     }
-    else if( name == "adbook" )
-      inAdBook = true;
-*/
-    return true;
-  }
+    bool endElement( const QString&, const QString&, const QString &qname )
+    {
+        if (qname == "language" &&  myState == LANGUAGE)
+            myState = NOTHING;
+        //
+        else if (qname == "author" &&  myState == AUTHOR)
+            myState = LANGUAGE;
+        //
+        else if (qname == "date" &&  myState == DATE)
+            myState = LANGUAGE;
+        //
+        else if (qname == "item" &&  myState == ITEM)
+            myState = LANGUAGE;
+        //
+        else if (qname == "body" &&  myState == BODY)
+            myState = ITEM;
+        //
+        else if (qname == "comment" &&  myState == COMMENT)
+            myState = ITEM;
+        //
+        else
+            return false;
+        //
+        return true;
+    }
+
+    bool startElement( const QString&, const QString&, const QString &qname, const QXmlAttributes &attrs )
+    {
+        if (qname == "language" && myState == NOTHING)
+        {
+            //
+            // Start of the language file
+            // Get the two attributes 'id' and 'version'
+            //
+            LanguageID = attrs.value("id");
+            LanguageVersion = attrs.value("version");
+            //
+            myState = LANGUAGE;
+        }
+        //
+        else if (qname == "author" && myState == LANGUAGE)
+            myState = AUTHOR;
+        //
+        else if (qname == "date" && myState == LANGUAGE)
+            myState = DATE;
+        //
+        else if (qname == "item" && myState == LANGUAGE)
+        {
+            ItemID = attrs.value("tag").toLong();
+            ItemTag = attrs.value("tag");
+            myState = ITEM;
+        }
+        //
+        else if (qname == "body" && myState == ITEM)
+            myState = BODY;
+        //
+        else if (qname == "comment" && myState == ITEM)
+            myState = COMMENT;
+        //
+        else
+            return false;
+        //
+        return true;
+    }
+
+
+
+    bool characters(const QString &str)
+    {
+        switch(myState)
+        {
+        case AUTHOR:
+            Author = str;
+            break;
+
+        case DATE:
+            CreateDate = str;
+            break;
+
+        case BODY:
+            break;
+
+        case COMMENT: // Ignore this element
+            break;
+
+        case NOTHING:
+        case LANGUAGE:
+        case ITEM:
+            break;
+        }
+
+        return true;
+    }
+
+
+
+
+public:
+    QString LanguageID;
+    QString LanguageVersion;
+    QString Author;
+    QString CreateDate;
 
 private:
-  bool inAdBook;
+    enum MyStateType myState;
+    long ItemID;
+    QString ItemTag;
 };
 
 
 class Translation : public QObject
 {
+
+private:
+    AdSaxParser handler;
+    QString currLanguage;
+    QList<TranslationTypeDef> translationList;
+
     Q_OBJECT
 public:
     explicit Translation(QObject *parent = 0);
-    
+
 
     Q_INVOKABLE QString getQStr(QString tag)
     {
@@ -86,28 +167,42 @@ public:
 
     //
     //
-    static void setLanguage(QString HomePath, QString lang)
+    Q_INVOKABLE QString setLanguage(QString lang)
     {
+        QString directory;
+        QString path;
         QFile file;
 
 
-        currLanguage = lang;
-
-        file.setFileName(HomePath + "/translation" + lang + ".xml");
+        directory = ":/translation/";
+        path = directory + "language_" + lang + ".xml";
+        file.setFileName(path);
 
         if (!file.exists())
         {
-            file.setFileName(HomePath + "/translation.xml");
-
-            if (!file.exists())
+            if (lang.indexOf("_") > -1)
             {
-                return;
+                QStringList list1 = lang.split("_", QString::SkipEmptyParts);
+
+                lang = list1[0];
+                path = directory + "language_" + lang + ".xml";
+                file.setFileName(path);
+
+                if (!file.exists())
+                {
+                    lang = "";
+                    path = directory + "language.xml";
+                    file.setFileName(path);
+                }
             }
         }
         //
+        // Check if the path to the final file exists
         //
         if (file.exists())
         {
+            currLanguage = lang;
+
             QXmlInputSource *source = new QXmlInputSource(&file);
 
             QXmlSimpleReader reader;
@@ -115,18 +210,14 @@ public:
 
             reader.parse( source );
         }
-
+        return currLanguage;
     }
 
-private:
-    static  AdSaxParser handler;
-    static QString currLanguage;
-    static QList<TranslationTypeDef> translationList;
 
 signals:
-    
+
 public slots:
-    
+
 };
 
 
