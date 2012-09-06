@@ -6,6 +6,7 @@
 # may offer an updated version of it.
 
 QT += declarative
+QT += xml
 
 SOURCES += $$PWD/qmlapplicationviewer.cpp
 HEADERS += $$PWD/qmlapplicationviewer.h

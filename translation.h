@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QFile>
 #include <QTextStream>
+#include <QtXml>
+
 
 typedef struct
 {
@@ -11,7 +13,6 @@ typedef struct
     QString value;
     QString comment;
 } TranslationTypeDef;
-
 
 
 
@@ -33,6 +34,7 @@ public:
 
   bool startElement( const QString&, const QString&, const QString &name, const QXmlAttributes &attrs )
   {
+/*
     if( inAdBook && name == "contact" )
     {
       QString name, phone, email;
@@ -51,14 +53,13 @@ public:
     }
     else if( name == "adbook" )
       inAdBook = true;
-
+*/
     return true;
   }
 
 private:
   bool inAdBook;
 };
-
 
 
 class Translation : public QObject
@@ -83,22 +84,20 @@ public:
     }
 
 
-
     //
     //
-    static void setLanguage(QString lang)
+    static void setLanguage(QString HomePath, QString lang)
     {
+        QFile file;
+
+
         currLanguage = lang;
 
-        AdSaxParser handler;
-
-        QFile file();
-
-        file.setFileName(Qt.resolveUrl("translation_" + lang + ".xml" ));
+        file.setFileName(HomePath + "/translation" + lang + ".xml");
 
         if (!file.exists())
         {
-            file.setFileName(Qt.resolveUrl("translation.xml" ));
+            file.setFileName(HomePath + "/translation.xml");
 
             if (!file.exists())
             {
@@ -107,16 +106,20 @@ public:
         }
         //
         //
-        QXmlInputSource source( file );
+        if (file.exists())
+        {
+            QXmlInputSource *source = new QXmlInputSource(&file);
 
-        QXmlSimpleReader reader;
-        reader.setContentHandler( &handler );
+            QXmlSimpleReader reader;
+            reader.setContentHandler( &handler );
 
-        reader.parse( source );
+            reader.parse( source );
+        }
 
     }
 
 private:
+    static  AdSaxParser handler;
     static QString currLanguage;
     static QList<TranslationTypeDef> translationList;
 

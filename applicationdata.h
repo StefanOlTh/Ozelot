@@ -1,6 +1,8 @@
 #ifndef APPLICATIONDATA_H
 #define APPLICATIONDATA_H
 
+
+
 #include <QObject>
 #include <QFile>
 #include <QTextStream>

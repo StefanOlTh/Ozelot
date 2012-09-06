@@ -9,6 +9,51 @@ Page {
     tools: myShowChangeLogPageToolBar
 
 
+
+    Flickable  {
+        id: flickable
+        anchors.top: titleBackground.bottom
+        anchors.bottom: parent.bottom
+        boundsBehavior: Flickable.StopAtBounds
+        width: parent.width;
+        contentWidth: changeLogArea.width;
+        contentHeight: changeLogArea.height
+
+        Text  {
+
+            id: changeLogArea
+//            text: "1dslkjhfsldkjhflkdshflkash__AA__Adlfkhaslkd__BB__fhlhdsflkhaslfla__CC__shdflk\n1\n1\n1\n2\n1\n1\n1\n1\n1\n3\n1\n1\n1\n4\n1\n1\n1\n1\n5\n1\n1\n1\n6\n1\n1\n1\n7\n1\n1\n1\n8\n\n\n\n\n9"
+            font.pixelSize: 25
+            textFormat: TextEdit.RichText
+            wrapMode: TextEdit.WordWrap
+
+
+            Component.onCompleted: {
+                var doc = new XMLHttpRequest();
+                doc.onreadystatechange = function() {
+                            if (doc.readyState === XMLHttpRequest.DONE) {
+                                changeLogArea.text = changeLogArea.text + doc.responseText
+                                /*
+                        var a = doc.responseXML.documentElement;
+                        if (a !== null) {
+                            for (var ii = 0; ii < a.childNodes.length; ++ii) {
+                                if (a.childNodes[ii].nodeName === "body") {
+                                    changeLogArea.text = changeLogArea.text + a.childNodes[ii].firstChild.nodeValue;
+                                }
+                            }
+                        }
+                    }
+*/
+                            }
+                        }
+                doc.open("GET", Qt.resolvedUrl("OzelotChangeLog.txt"))
+                doc.send();
+            }
+            onLinkActivated: Qt.openUrlExternally(link)
+        }
+
+    }
+
     Rectangle {
         id: titleBackground
         color: "blue"
@@ -27,42 +72,6 @@ Page {
     }
 
 
-         TextEdit  {
-            id: changeLogArea
-            anchors.top: titleBackground.bottom
-            width: parent.width
-            height: 300
-            text: "1\n1\n1\n1\n2\n1\n1\n1\n1\n1\n3\n1\n1\n1\n4\n1\n1\n1\n1\n5\n1\n1\n1\n6\n1\n1\n1\n7\n1\n1\n1\n8\n\n\n\n\n9"
-            font.pixelSize: 20
-            textFormat: TextEdit.AutoText
-            readOnly: true
-            wrapMode: TextEdit.WordWrap
-
-    /*
-
-            Component.onCompleted: {
-                var doc = new XMLHttpRequest();
-                doc.onreadystatechange = function() {
-                    if (doc.readyState === XMLHttpRequest.DONE) {
-                        changeLogArea.text = changeLogArea.text + doc.responseText + "\n\n"
-    /*
-                        var a = doc.responseXML.documentElement;
-                        if (a !== null) {
-                            for (var ii = 0; ii < a.childNodes.length; ++ii) {
-                                if (a.childNodes[ii].nodeName === "body") {
-                                    changeLogArea.text = changeLogArea.text + a.childNodes[ii].firstChild.nodeValue;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                doc.open("GET", Qt.resolvedUrl("OzelotChangeLog.txt"))
-                doc.send();
-            }
-    */
-        }
-
 
     ToolBarLayout {
         id: myShowChangeLogPageToolBar
@@ -71,25 +80,26 @@ Page {
         ToolIcon {
             platformIconId: "icon-m-toolbar-back"
             anchors.left: (parent === undefined) ? undefined : parent.left
-          onClicked: {
-              pageStack.pop()
-          }
+            onClicked: {
+                pageStack.pop()
+            }
         }
 
 
         ToolIcon {
             platformIconId: "icon-m-toolbar-directory"
-          onClicked: {
-              pageStack.pop()
-              pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
-          }
+            onClicked: {
+                pageStack.pop()
+                pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
+            }
         }
 
         ToolIcon {
             platformIconId: "icon-m-toolbar-mediacontrol-play"
-          onClicked: {
-          }
+            onClicked: {
+            }
         }
 
     }
+
 }

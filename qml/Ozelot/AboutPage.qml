@@ -8,18 +8,53 @@ Page {
 
     tools: myAboutPageToolBar
 
+    Flickable  {
+        id: flickable
+        anchors.top: titleBackground.bottom
+        anchors.bottom: parent.bottom
+        boundsBehavior: Flickable.StopAtBounds
+        width: parent.width;
+        contentWidth: changeLogArea.width;
+        contentHeight: changeLogArea.height
 
-    onVisibleChanged: {
-             if (visible) {
+        Text  {
+
+            id: changeLogArea
+            font.pixelSize: 25
+            textFormat: TextEdit.RichText
+            wrapMode: TextEdit.WordWrap
+
+
+            Component.onCompleted: {
+                var doc = new XMLHttpRequest();
+                doc.onreadystatechange = function() {
+                            if (doc.readyState === XMLHttpRequest.DONE) {
+                                changeLogArea.text = changeLogArea.text + doc.responseText
+                            }
+                        }
+                doc.open("GET", Qt.resolvedUrl("copyright.txt"))
+                doc.send();
             }
+            onLinkActivated: Qt.openUrlExternally(link)
+        }
+
     }
 
+    Rectangle {
+        id: titleBackground
+        color: "blue"
+        anchors.top: parent.top
+        width: parent.width
+        height: title.height * 2
 
-    Label {
-        id: label
-        anchors.centerIn: parent
-        text: qsTr("About")
-        visible: true
+        Label {
+            id: title
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: 35; font.bold: false
+            color: "white"
+            text: qsTr("About")
+            visible: true
+        }
     }
 
 

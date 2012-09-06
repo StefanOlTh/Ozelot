@@ -15,9 +15,9 @@ Changes:
  .
    * Initial Release.
 Checksums-Sha1: 
- 351e29106b54aa938c51733875a8b950981a0311 22162 ozelot_0.0.1_armel.deb
+ 9bfeadc9cbc1300db7a7e0a836d6f12998930580 22698 ozelot_0.0.1_armel.deb
 Checksums-Sha256: 
- 95258c52e3fcc55d0a61c4122b5b7eb44f9afbc2b1b92555800f4b7c9e8ab7fd 22162 ozelot_0.0.1_armel.deb
+ ab5ecb346a02b738f9e737c33f33fca7990bc72cfb9b45ba912905246f325d17 22698 ozelot_0.0.1_armel.deb
 Files: 
- ff706777f889397e76a563534a274dbe 22162 user/other optional ozelot_0.0.1_armel.deb
+ 9d2ce3ae68225d57ca58a62742b71856 22698 user/other optional ozelot_0.0.1_armel.deb
 Maemo-Display-Name: Ozelot

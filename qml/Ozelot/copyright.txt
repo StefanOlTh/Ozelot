@@ -1,0 +1,45 @@
+<p><b>Ozelot</b> 1.0</p>
+<br>
+<br>
+Upstream Author(s):<br>
+<br>
+    Stefan Olsson <a href="mailto:stefanthorlacius@live.se">stefanthorlacius@live.se</a></p><br>
+<br>
+Copyright: <br>
+<br>
+    Copyright (C) 2012 Stefan Olsson><br>
+<br>
+<p>The source code can be found at <br>
+<a href="https://github.com/StefanOlTh/Ozelot.git">https://github.com/StefanOlTh/Ozelot.git</a></p>
+<br>
+<br>
+License:<br>
+<br>
+    This package is free software; you can redistribute it and/or modify<br>
+    it under the terms of the GNU General Public License as published by<br>
+    the Free Software Foundation; either version 2 of the License, or<br>
+    (at your option) any later version.<br>
+<br>
+    This package is distributed in the hope that it will be useful,<br>
+    but WITHOUT ANY WARRANTY; without even the implied warranty of<br>
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br>
+    GNU General Public License for more details.<br>
+<br>
+    You should have received a copy of the GNU General Public License<br>
+    along with this package; if not, write to the Free Software<br>
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA<br>
+<br>
+On Debian systems, the complete text of the GNU General<br>
+Public License can be found in `/usr/share/common-licenses/GPL'.<br>
+<br>
+The Debian packaging is (C) 2012, Stefan Olsson <> and<br>
+is licensed under the GPL, see above.<br><br>
+<br>
+<br>
+# Please also look if there are files or directories which have a<br>
+# different copyright/license attached and list them here.<br>
+<br>
+
+
+
+

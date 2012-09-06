@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'translation.h'
 **
-** Created: Tue 4. Sep 21:56:45 2012
+** Created: Wed 5. Sep 20:05:06 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

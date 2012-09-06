@@ -1,32 +1,7 @@
+<p><b>Ozelot</b> 1.0</p>unstable; urgency=low<br>
+<br>
+* Initial Release.<br>
+<br>
+ -- Stefan Olsson stefan.thorlacius@live.se Fri, 31 Aug 2012 11:52:11 +0200<br>
 
-Thick text
-
-
-
-Don't forget me this weekend! and this is soooooooooooooooooooo
-
-
-'sdfkasäfdasklöfjdlökasjdfaslöfjdasklöjd'sd
-s
-das
-df
-sdf
-sad
-f
-sf
-sd
-
-
-
-
-
-
-http://stackoverflow.com/questions/12269688/qt-qml-textedit-component-do-no-get-a-slidebar-when-the-text-is-to-large-to-fit
-
-
-
-
-
-
-Detta är för kul
-
+http://developer.meego.com/api/1.2/qtmobility/index.html
