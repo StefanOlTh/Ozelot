@@ -59,7 +59,10 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/changelog \
     resource/OzelotChangeLog.txt \
     resource/copyright.txt \
-    resource/copyright.txt
+    resource/copyright.txt \
+    resource/translation/language.xml \
+    resource/translation/language_sv_SE.xml \
+    resource/translation/language_sv.xml
 
 HEADERS += \
     applicationdata.h \

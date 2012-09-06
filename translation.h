@@ -9,120 +9,15 @@
 
 typedef struct
 {
-    QString id;
-    QString value;
-    QString comment;
+    long id;
+    QString tag;
+    QString body;
 } TranslationTypeDef;
 
 
 
-class AdSaxParser : public QXmlDefaultHandler
+class LanguageSaxParser : public QXmlDefaultHandler
 {
-    enum MyStateType { NOTHING, LANGUAGE, AUTHOR, DATE, ITEM, BODY, COMMENT };
-
-
-public:
-    bool startDocument()
-    {
-        myState = NOTHING;
-        return true;
-    }
-    bool endElement( const QString&, const QString&, const QString &qname )
-    {
-        if (qname == "language" &&  myState == LANGUAGE)
-            myState = NOTHING;
-        //
-        else if (qname == "author" &&  myState == AUTHOR)
-            myState = LANGUAGE;
-        //
-        else if (qname == "date" &&  myState == DATE)
-            myState = LANGUAGE;
-        //
-        else if (qname == "item" &&  myState == ITEM)
-            myState = LANGUAGE;
-        //
-        else if (qname == "body" &&  myState == BODY)
-            myState = ITEM;
-        //
-        else if (qname == "comment" &&  myState == COMMENT)
-            myState = ITEM;
-        //
-        else
-            return false;
-        //
-        return true;
-    }
-
-    bool startElement( const QString&, const QString&, const QString &qname, const QXmlAttributes &attrs )
-    {
-        if (qname == "language" && myState == NOTHING)
-        {
-            //
-            // Start of the language file
-            // Get the two attributes 'id' and 'version'
-            //
-            LanguageID = attrs.value("id");
-            LanguageVersion = attrs.value("version");
-            //
-            myState = LANGUAGE;
-        }
-        //
-        else if (qname == "author" && myState == LANGUAGE)
-            myState = AUTHOR;
-        //
-        else if (qname == "date" && myState == LANGUAGE)
-            myState = DATE;
-        //
-        else if (qname == "item" && myState == LANGUAGE)
-        {
-            ItemID = attrs.value("tag").toLong();
-            ItemTag = attrs.value("tag");
-            myState = ITEM;
-        }
-        //
-        else if (qname == "body" && myState == ITEM)
-            myState = BODY;
-        //
-        else if (qname == "comment" && myState == ITEM)
-            myState = COMMENT;
-        //
-        else
-            return false;
-        //
-        return true;
-    }
-
-
-
-    bool characters(const QString &str)
-    {
-        switch(myState)
-        {
-        case AUTHOR:
-            Author = str;
-            break;
-
-        case DATE:
-            CreateDate = str;
-            break;
-
-        case BODY:
-            break;
-
-        case COMMENT: // Ignore this element
-            break;
-
-        case NOTHING:
-        case LANGUAGE:
-        case ITEM:
-            break;
-        }
-
-        return true;
-    }
-
-
-
 
 public:
     QString LanguageID;
@@ -130,34 +25,44 @@ public:
     QString Author;
     QString CreateDate;
 
+    bool startDocument();
+    bool startElement( const QString&, const QString&, const QString &qname, const QXmlAttributes &attrs );
+    bool endElement( const QString&, const QString&, const QString &qname );
+    bool characters(const QString &str);
+
+    bool setTranslationList(QList<TranslationTypeDef> *list);
+
 private:
+    enum MyStateType { NOTHING, LANGUAGE, AUTHOR, DATE, ITEM, BODY, COMMENT };
     enum MyStateType myState;
-    long ItemID;
-    QString ItemTag;
+
+    TranslationTypeDef  *currDef;
+    QList<TranslationTypeDef> *translationList;
 };
 
 
 class Translation : public QObject
 {
+public:
+    static QList<TranslationTypeDef> translationList;
 
 private:
-    AdSaxParser handler;
+    LanguageSaxParser handler;
     QString currLanguage;
-    QList<TranslationTypeDef> translationList;
 
     Q_OBJECT
 public:
     explicit Translation(QObject *parent = 0);
 
 
-    Q_INVOKABLE QString getQStr(QString tag)
+    Q_INVOKABLE QString getString(QString tag)
     {
         QString result = "";
 
         return result;
     }
 
-    Q_INVOKABLE QString getQStr(int tag)
+    Q_INVOKABLE QString getString(int tag)
     {
         QString result = "";
 
@@ -165,6 +70,12 @@ public:
     }
 
 
+    //
+    //
+    Q_INVOKABLE QString getLanguage()
+    {
+        return currLanguage;
+    }
     //
     //
     Q_INVOKABLE QString setLanguage(QString lang)
@@ -203,14 +114,22 @@ public:
         {
             currLanguage = lang;
 
-            QXmlInputSource *source = new QXmlInputSource(&file);
+            handler.setTranslationList(&Translation.translationList);
 
+            QXmlInputSource *source = new QXmlInputSource(&file);
             QXmlSimpleReader reader;
             reader.setContentHandler( &handler );
 
             reader.parse( source );
         }
         return currLanguage;
+    }
+    //
+    //
+    //
+    bool setNewTag(long id, QString tag, QString body)
+    {
+        return true;
     }
 
 
