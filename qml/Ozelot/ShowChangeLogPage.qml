@@ -67,7 +67,7 @@ Page {
             anchors.horizontalCenter: parent.horizontalCenter
             font.pixelSize: 35; font.bold: false
             color: "white"
-            text: qsTr("Change Log")
+            text: Translation.getString("Change Log")
             visible: true
         }
     }
@@ -89,18 +89,66 @@ Page {
 
         ToolIcon {
             platformIconId: "icon-m-toolbar-directory"
-            onClicked: {
-                pageStack.pop()
-                pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
-            }
+          onClicked: {
+              pageStack.push(Qt.resolvedUrl("MainPage.qml"))
+          }
+        }
+
+
+        ToolIcon {
+            platformIconId: "icon-m-toolbar-mediacontrol-play"
+          onClicked: {
+              pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
+          }
+        }
+
+
+    }
+/*
+
+    ToolBarLayout {
+        id: commonTools
+        visible: true
+
+        ToolIcon {
+            platformIconId: "icon-m-toolbar-back"
+            anchors.left: (parent === undefined) ? undefined : parent.left
+          onClicked: {
+              pageStack.push(Qt.resolvedUrl("ExitPage.qml"))
+          }
+        }
+
+        ToolIcon {
+            platformIconId: "icon-m-toolbar-directory"
+          onClicked: {
+              pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
+          }
         }
 
         ToolIcon {
             platformIconId: "icon-m-toolbar-mediacontrol-play"
-            onClicked: {
-            }
+          onClicked: {
+          }
         }
 
+        ToolIcon {
+            platformIconId: "icon-m-toolbar-settings"
+            anchors.right: (parent === undefined) ? undefined : parent.right
+            onClicked: (mySettingMenu.status === DialogStatus.Closed) ? mySettingMenu.open() : mySettingMenu.close()
+
+        }
     }
 
+    Menu {
+        id: mySettingMenu
+        visualParent: pageStack
+        MenuLayout {
+            MenuItem { text: Translation.getString("Settings") }
+            MenuItem {
+                text: Translation.getString("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
+    }
+*/
 }

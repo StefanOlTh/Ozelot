@@ -51,7 +51,7 @@ Page {
             anchors.horizontalCenter: parent.horizontalCenter
             font.pixelSize: 35; font.bold: false
             color: "white"
-            text: qsTr("About")
+            text: Translation.getString("About")
             visible: true
         }
     }
@@ -61,13 +61,31 @@ Page {
         id: myAboutPageToolBar
         visible: true
 
+
         ToolIcon {
             platformIconId: "icon-m-toolbar-back"
             anchors.left: (parent === undefined) ? undefined : parent.left
+            onClicked: {
+                pageStack.pop()
+            }
+        }
+
+
+        ToolIcon {
+            platformIconId: "icon-m-toolbar-directory"
           onClicked: {
-              pageStack.pop()
+              pageStack.push(Qt.resolvedUrl("MainPage.qml"))
           }
         }
+
+
+        ToolIcon {
+            platformIconId: "icon-m-toolbar-mediacontrol-play"
+          onClicked: {
+              pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
+          }
+        }
+
 
         ToolIcon {
             platformIconId: "icon-m-toolbar-view-menu"

@@ -3,13 +3,14 @@
 
 
 
+//! Callbac from the SAX parser */
 bool LanguageSaxParser::startDocument()
 {
     myState = NOTHING;
     return true;
 }
 
-
+//! Callbac from the SAX parser */
 bool LanguageSaxParser::endElement( const QString&, const QString&, const QString &qname )
 {
     if (qname == "language" &&  myState == LANGUAGE)
@@ -36,6 +37,7 @@ bool LanguageSaxParser::endElement( const QString&, const QString&, const QStrin
     return true;
 }
 
+//! Callbac from the SAX parser */
 bool LanguageSaxParser::startElement( const QString&, const QString&, const QString &qname, const QXmlAttributes &attrs )
 {
     if (qname == "language" && myState == NOTHING)
@@ -58,9 +60,8 @@ bool LanguageSaxParser::startElement( const QString&, const QString&, const QStr
     //
     else if (qname == "item" && myState == LANGUAGE)
     {
-        currDef = new TranslationTypeDef;
-        currDef->id = attrs.value("id").toLong();
-        currDef->tag = attrs.value("tag");
+        currDef.id = attrs.value("id").toLong();
+        currDef.tag = attrs.value("tag");
         myState = ITEM;
     }
     //
@@ -78,22 +79,23 @@ bool LanguageSaxParser::startElement( const QString&, const QString&, const QStr
 
 
 
+//! Callbac from the SAX parser */
 bool LanguageSaxParser::characters(const QString &str)
 {
     switch(myState)
     {
     case AUTHOR:
-        Author = str;
+        LanguageAuthor = str;
         break;
 
     case DATE:
-        CreateDate = str;
+        LanguageCreateDate = str;
         break;
 
     case BODY:
         {
-            currDef->body = str;
-            translationList->append(*currDef);
+            currDef.body = str;
+            translationList.append(currDef);
         }
         break;
 
@@ -109,19 +111,14 @@ bool LanguageSaxParser::characters(const QString &str)
     return true;
 }
 
-bool LanguageSaxParser::setTranslationList(QList<TranslationTypeDef> *list)
-{
-    translationList = list;
-    return true;
-}
-
-
 
 
 
 Translation::Translation(QObject *parent) :
     QObject(parent)
 {
+    useFallBackLanguage = true;
+    currLanguage = "";
 }
 
 

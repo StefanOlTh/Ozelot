@@ -8,6 +8,11 @@
 		<comment> </comment>
 	</item>
 
+        <item id="1" tag="HelloWorld2">
+                <body>Hello trams</body>
+                <comment> </comment>
+        </item>
+
 	<item id="2" tag="Server">
 		<body>Server</body>
 		<comment> </comment>

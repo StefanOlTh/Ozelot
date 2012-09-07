@@ -10,6 +10,13 @@ Page {
     tools:myExitPageToolBar
 
 
+    Label {
+        id: label
+        anchors.centerIn: parent
+        text: Translation.getString("Exit?")
+    }
+
+
 
 
     ToolBarLayout {
@@ -33,24 +40,5 @@ Page {
             }
         }
     }
-
-    /*
-    Component.onCompleted: {
-        pageStack.push(Qt.resolvedUrl("MainPage.qml"))
-    }
-*/
-
-    /*
-    QueryDialog {
-    id: errDialog
-    titleText: "Exit application"
-    message: "Exit?"
-    acceptButtonText: "OK"
-    rejectButtonText: "NO"
-    accepted: {  Qt.quit() }
-    rejected: {  pageStack.pop() }
-    }
-*/
-
 }
 

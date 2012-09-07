@@ -15,7 +15,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
      Translation myTranslation;
 
      viewer.rootContext()->setContextProperty("myApplicationData", new ApplicationData);
-     viewer.rootContext()->setContextProperty("myTranslation", &myTranslation);
+     viewer.rootContext()->setContextProperty("Translation", &myTranslation);
 
      myTranslation.setLanguage(QLocale::system().name());
 

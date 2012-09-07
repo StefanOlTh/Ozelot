@@ -13,6 +13,12 @@ PageStackWindow {
         id: mainPage
     }
 
+    /*
+    Component.onCompleted: {
+        pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
+    }
+
+
 
     ToolBarLayout {
         id: commonTools
@@ -51,12 +57,13 @@ PageStackWindow {
         id: mySettingMenu
         visualParent: pageStack
         MenuLayout {
-            MenuItem { text: qsTr("Settings") }
+            MenuItem { text: Translation.getString("Settings") }
             MenuItem {
-                text: qsTr("About")
+                text: Translation.getString("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
         }
     }
+*/
 
 }
