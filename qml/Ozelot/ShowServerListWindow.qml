@@ -2,10 +2,45 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
+import "./component"
+
 Page {
     id: showServerListWindow
 
-    tools: commonShowServerListTools
+    tools: myToolBar
+
+
+
+    HeaderBar {
+        id:myHeaderBar
+        refreshableVisible: false
+        busyVisible: false
+        title: Translation.getString("Renders")
+    }
+
+    ToolBarStandard {
+        id: myToolBar
+        exitVisible: true
+        mediaListVisible: true
+        mediaControlVisible: false
+        settingMenuVisible: true
+        onClicked: (mySettingMenu.status === DialogStatus.Closed) ? mySettingMenu.open() : mySettingMenu.close()
+    }
+
+    Menu {
+        id: mySettingMenu
+        visualParent: pageStack
+        MenuLayout {
+            MenuItem { text: Translation.getString("Settings") }
+            MenuItem {
+                text: Translation.getString("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+        }
+    }
+}
+
+/*
 
     Rectangle {
         id: titleBackground
@@ -23,6 +58,8 @@ Page {
             visible: true
         }
     }
+
+
 
     ToolBarLayout {
         id: commonShowServerListTools
@@ -73,3 +110,4 @@ Page {
         text: qsTr("This is the render list")
     }
 }
+*/

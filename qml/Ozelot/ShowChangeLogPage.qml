@@ -2,17 +2,19 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
+import "./component"
+
 
 Page {
     id: myShowChangeLogPage
 
-    tools: myShowChangeLogPageToolBar
+    tools: myToolBar
 
 
 
     Flickable  {
         id: flickable
-        anchors.top: titleBackground.bottom
+        anchors.top: myHeaderBar.bottom
         anchors.bottom: parent.bottom
         boundsBehavior: Flickable.StopAtBounds
         width: parent.width;
@@ -55,100 +57,19 @@ Page {
 
     }
 
-    Rectangle {
-        id: titleBackground
-        color: "blue"
-        anchors.top: parent.top
-        width: parent.width
-        height: title.height * 2
 
-        Label {
-            id: title
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: 35; font.bold: false
-            color: "white"
-            text: Translation.getString("Change Log")
-            visible: true
-        }
+
+    HeaderBar {
+        id:myHeaderBar
+        refreshableVisible: false
+        busyVisible: false
+        title: Translation.getString("Change Log")
     }
 
-
-
-    ToolBarLayout {
-        id: myShowChangeLogPageToolBar
-        visible: true
-
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-back"
-            anchors.left: (parent === undefined) ? undefined : parent.left
-            onClicked: {
-                pageStack.pop()
-            }
-        }
-
-
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-directory"
-          onClicked: {
-              pageStack.push(Qt.resolvedUrl("MainPage.qml"))
-          }
-        }
-
-
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-mediacontrol-play"
-          onClicked: {
-              pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
-          }
-        }
-
-
+    ToolBarStandard {
+        id: myToolBar
+        backVisible: true
+        mediaListVisible: true
+        mediaControlVisible: true
     }
-/*
-
-    ToolBarLayout {
-        id: commonTools
-        visible: true
-
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-back"
-            anchors.left: (parent === undefined) ? undefined : parent.left
-          onClicked: {
-              pageStack.push(Qt.resolvedUrl("ExitPage.qml"))
-          }
-        }
-
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-directory"
-          onClicked: {
-              pageStack.push(Qt.resolvedUrl("ShowServerListWindow.qml"))
-          }
-        }
-
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-mediacontrol-play"
-          onClicked: {
-          }
-        }
-
-        ToolIcon {
-            platformIconId: "icon-m-toolbar-settings"
-            anchors.right: (parent === undefined) ? undefined : parent.right
-            onClicked: (mySettingMenu.status === DialogStatus.Closed) ? mySettingMenu.open() : mySettingMenu.close()
-
-        }
-    }
-
-    Menu {
-        id: mySettingMenu
-        visualParent: pageStack
-        MenuLayout {
-            MenuItem { text: Translation.getString("Settings") }
-            MenuItem {
-                text: Translation.getString("About")
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-        }
-    }
-*/
 }

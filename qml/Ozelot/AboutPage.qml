@@ -2,15 +2,16 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
+import "./component"
 
 Page {
     id: myAboutPage
 
-    tools: myAboutPageToolBar
+    tools: myToolBar
 
     Flickable  {
         id: flickable
-        anchors.top: titleBackground.bottom
+        anchors.top: myHeaderBar.bottom
         anchors.bottom: parent.bottom
         boundsBehavior: Flickable.StopAtBounds
         width: parent.width;
@@ -39,26 +40,28 @@ Page {
         }
     }
 
-    Rectangle {
-        id: titleBackground
-        color: "blue"
-        anchors.top: parent.top
-        width: parent.width
-        height: title.height * 2
 
-        Label {
-            id: title
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: 35; font.bold: false
-            color: "white"
-            text: Translation.getString("About")
-            visible: true
-        }
+    HeaderBar {
+        id: myHeaderBar
+        refreshableVisible: false
+        busyVisible: false
+        title: Translation.getString("About")
     }
 
+    ToolBarStandard {
+        id: myToolBar
+        backVisible: false
+        mediaControlVisible: true
+        mediaListVisible: true
+        viewMenuVisible: true
+        onClicked: pageStack.push(Qt.resolvedUrl("ShowChangeLogPage.qml"))
+    }
+}
+
+/*
 
     ToolBarLayout {
-        id: myAboutPageToolBar
+        id: myToolBar
         visible: true
 
 
@@ -94,6 +97,6 @@ Page {
               pageStack.push(Qt.resolvedUrl("ShowChangeLogPage.qml"))
           }
         }
-
     }
 }
+*/
