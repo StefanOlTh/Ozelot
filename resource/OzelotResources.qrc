@@ -5,5 +5,6 @@
         <file>translation/language.xml</file>
         <file>translation/language_sv.xml</file>
         <file>translation/language_sv_SE.xml</file>
+        <file>Help.txt</file>
     </qresource>
 </RCC>

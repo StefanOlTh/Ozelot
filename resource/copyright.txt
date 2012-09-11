@@ -1,5 +1,3 @@
-<p><b>Ozelot</b> 1.0</p>
-<br>
 <br>
 Upstream Author(s):<br>
 <br>
@@ -12,6 +10,8 @@ Copyright: <br>
 <p>The source code can be found at <br>
 <a href="https://github.com/StefanOlTh/Ozelot.git">https://github.com/StefanOlTh/Ozelot.git</a></p>
 <br>
+<br>
+The image of the Ocelot is credit: U.S. Fish and Wildlife Service, Tom Smylie
 <br>
 License:<br>
 <br>

@@ -1,3 +1,11 @@
+/*!
+ * This file is part of the Ozelot application
+ *
+ * This file is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+*/
 // import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 import com.nokia.meego 1.0

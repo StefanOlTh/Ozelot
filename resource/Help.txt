@@ -1,0 +1,15 @@
+<br>Questions can be sent to Stefan Olsson <a href="mailto:stefanthorlacius@live.se">stefanthorlacius@live.se</a>
+<br>
+<br>
+Use this email as well, if you want to contribute to the application by suggesting new functionality or translate the menu texts into a new language
+<br>
+<br>
+If you have encouter something strang,e such as a device does not appear in the lists or can not play a particular content you can send an email with the log of
+the current execution of the application. This logg file do not contain any sensitive personal information but a log of what the application have tried to do and what
+UPnP communication have been done with other device in your network, no password, content, images, sound or videos  or other sensitive is included.
+<br>
+Use this link for sending the logg <a href="mailto:stefanthorlacius@live.se">stefanthorlacius@live.se</a>
+<br>
+<br>
+
+

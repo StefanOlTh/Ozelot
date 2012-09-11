@@ -34,30 +34,8 @@ Page {
             font.pixelSize: 25
             textFormat: TextEdit.RichText
             wrapMode: TextEdit.WordWrap
-
-
-            Component.onCompleted: {
-                var doc = new XMLHttpRequest();
-                doc.onreadystatechange = function() {
-                            if (doc.readyState === XMLHttpRequest.DONE) {
-                                changeLogArea.text = changeLogArea.text + doc.responseText
-                                /*
-                        var a = doc.responseXML.documentElement;
-                        if (a !== null) {
-                            for (var ii = 0; ii < a.childNodes.length; ++ii) {
-                                if (a.childNodes[ii].nodeName === "body") {
-                                    changeLogArea.text = changeLogArea.text + a.childNodes[ii].firstChild.nodeValue;
-                                }
-                            }
-                        }
-                    }
-*/
-                            }
-                        }
-//                doc.open("GET", Qt.resolvedUrl("OzelotChangeLog.txt"))
-                doc.open("GET", Qt.resolvedUrl("qrc:///OzelotChangeLog.txt"))
-                doc.send();
-            }
+            text: "<br>" + APPLICATION_NAME + " " + APPLICATION_VERSION + "<br>" +
+                  myPlatformSystemCall.getFileNameTranslation("OzelotChangeLog.txt", Translation.getLanguage());
             onLinkActivated: Qt.openUrlExternally(link)
         }
 

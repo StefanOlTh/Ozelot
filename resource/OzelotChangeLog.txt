@@ -1,4 +1,3 @@
-<p><b>Ozelot</b> 1.0</p>unstable; urgency=low<br>
 <br>
 * Initial Release.<br>
 <br>

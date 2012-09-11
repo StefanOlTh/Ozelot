@@ -12,6 +12,9 @@ import com.nokia.meego 1.0
 
 import "./component"
 
+
+
+
 Page {
     id: myAboutPage
 
@@ -29,25 +32,19 @@ Page {
         Text  {
 
             id: changeLogArea
+            width: screen.displayWidth
             font.pixelSize: 25
             textFormat: TextEdit.RichText
             wrapMode: TextEdit.WordWrap
             text: "<br>" + APPLICATION_NAME + " " + APPLICATION_VERSION + "<br>" +
-                  myPlatformSystemCall.getFileNameTranslation("copyright.txt", Translation.getLanguage());
-/*
-
-            Component.onCompleted: {
-                var doc = new XMLHttpRequest();
-                doc.onreadystatechange = function() {
-                            if (doc.readyState === XMLHttpRequest.DONE) {
-                                changeLogArea.text = changeLogArea.text + doc.responseText
-                            }
-                        }
-                doc.open("GET", Qt.resolvedUrl("qrc:///copyright.txt"))
-                doc.send();
+                  myPlatformSystemCall.getFileNameTranslation("Help.txt", Translation.getLanguage());
+            onLinkActivated: {
+                if (link === "mailto:stefanthorlacius@live.se?log=y")
+                    Qt.openUrlExternally(link)
+                else
+                    Qt.openUrlExternally(link)
+                //
             }
-            */
-            onLinkActivated: Qt.openUrlExternally(link)
         }
     }
 
@@ -56,16 +53,12 @@ Page {
         id: myHeaderBar
         refreshableVisible: false
         busyVisible: false
-        title: Translation.getString("About")
+        title: Translation.getString("Help")
     }
 
     ToolBarStandard {
         id: myToolBar
-        backVisible: false
         mediaControlVisible: true
         mediaListVisible: true
-        viewMenuVisible: true
-        onClicked: pageStack.push(Qt.resolvedUrl("ShowChangeLogPage.qml"))
     }
 }
-

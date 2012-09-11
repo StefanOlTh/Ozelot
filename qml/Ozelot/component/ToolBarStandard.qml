@@ -51,7 +51,7 @@ ToolBarLayout {
         width: parent.width / 4
         onClicked: {
             pageStack.clear()
-            pageStack.push(Qt.resolvedUrl("../ServerListPage.qml"))
+            pageStack.push(Qt.resolvedUrl("../MainPage.qml"))
         }
     }
 

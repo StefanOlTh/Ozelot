@@ -3,7 +3,6 @@ folder_01.source = qml/Ozelot
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
-VERSION = "1.0"
 
 APPLICATIONNAME = "Ozelot"
 
@@ -50,9 +49,9 @@ CONFIG += qdeclarative-boostable
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    applicationdata.cpp \
     translation.cpp \
-    logfile.cpp
+    logfile.cpp \
+    platformsystemcall.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -71,9 +70,11 @@ OTHER_FILES += \
     resource/copyright.txt \
     resource/translation/language.xml \
     resource/translation/language_sv_SE.xml \
-    resource/translation/language_sv.xml
+    resource/translation/language_sv.xml \
+    resource/Help.txt
 
 HEADERS += \
     applicationdata.h \
     translation.h \
-    logfile.h
+    logfile.h \
+    platformsystemcall.h

@@ -12,6 +12,8 @@ import com.nokia.meego 1.0
 
 import "./component"
 
+
+
 Page {
     id: serverListPage
 
@@ -54,7 +56,12 @@ Page {
         visualParent: pageStack
         MenuLayout {
             MenuItem { text: Translation.getString("Settings") }
-            MenuItem { text: Translation.getString("Help") }
+
+            MenuItem {
+                text: Translation.getString("Help")
+                onClicked: pageStack.push(Qt.resolvedUrl("HelpPage.qml"))
+            }
+
             MenuItem {
                 text: Translation.getString("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
