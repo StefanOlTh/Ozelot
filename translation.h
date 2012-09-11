@@ -7,6 +7,9 @@
 #include <QtXml/QXmlDefaultHandler>
 #include <QLibraryInfo>
 
+#include "logfile.h"
+
+
 typedef struct
 {
     long id;
@@ -187,6 +190,7 @@ public:
         path = directory + "language_" + lang + ".xml";
         file.setFileName(path);
         //
+        //
         if (!file.exists()) {
             if (lang.indexOf("_") > -1) {
 
@@ -202,13 +206,17 @@ public:
             path = directory + "language.xml";
             file.setFileName(path);
         }
-        //
+
+        LogFile::addString("Translation:setLanguage path = '" + path + "'");
+        LogFile::addString("Translation:setLanguage lang = '" + lang + "'");
         //
         // Check if the path to the final file exists
         //
         if (file.exists())
         {
             currLanguage = lang;
+
+            LogFile::addString("Translation:setLanguage file exist");
 
             QXmlInputSource *source = new QXmlInputSource(&file);
             QXmlSimpleReader reader;
@@ -226,6 +234,8 @@ public:
             path = directory + "language.xml";
             file.setFileName(path);
             //
+            LogFile::addString("Translation:setLanguage useFallBackLanguage");
+            //
             if (file.exists())
             {
                 QXmlInputSource *source = new QXmlInputSource(&file);
@@ -239,6 +249,7 @@ public:
             }
         }
         //
+        LogFile::addString("Translation:setLanguage currLanguage = '" + currLanguage + "'");
         //
         return currLanguage;
     } // Q_INVOKABLE QString setLanguage(QString lang)

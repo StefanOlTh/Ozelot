@@ -3,6 +3,11 @@ folder_01.source = qml/Ozelot
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
+VERSION = "1.0"
+
+APPLICATIONNAME = "Ozelot"
+
+
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
@@ -12,6 +17,9 @@ symbian:TARGET.UID3 = 0xE67563F0
 #
 #
 QT += xml
+
+#enable console
+CONFIG += console
 
 #Resources
 #
@@ -43,7 +51,8 @@ CONFIG += qdeclarative-boostable
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     applicationdata.cpp \
-    translation.cpp
+    translation.cpp \
+    logfile.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -66,4 +75,5 @@ OTHER_FILES += \
 
 HEADERS += \
     applicationdata.h \
-    translation.h
+    translation.h \
+    logfile.h

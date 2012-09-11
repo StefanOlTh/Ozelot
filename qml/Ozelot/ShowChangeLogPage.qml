@@ -1,4 +1,11 @@
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
+/*!
+ * This file is part of the Ozelot application
+ *
+ * This file is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+*/// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
@@ -24,7 +31,6 @@ Page {
         Text  {
 
             id: changeLogArea
-//            text: "1dslkjhfsldkjhflkdshflkash__AA__Adlfkhaslkd__BB__fhlhdsflkhaslfla__CC__shdflk\n1\n1\n1\n2\n1\n1\n1\n1\n1\n3\n1\n1\n1\n4\n1\n1\n1\n1\n5\n1\n1\n1\n6\n1\n1\n1\n7\n1\n1\n1\n8\n\n\n\n\n9"
             font.pixelSize: 25
             textFormat: TextEdit.RichText
             wrapMode: TextEdit.WordWrap

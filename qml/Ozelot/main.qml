@@ -7,9 +7,9 @@ import com.nokia.meego 1.0
 PageStackWindow {
     id: appWindow
 
-    initialPage: mainPage
+    initialPage: serverListPage
 
     MainPage {
-        id: mainPage
+        id: serverListPage
     }
 }

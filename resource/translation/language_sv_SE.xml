@@ -38,7 +38,12 @@
                 <comment> </comment>
         </item>
 
-        <item id="7" tag="Servers">
+        <item id="7" tag="Help">
+                <body>Hjälp</body>
+                <comment> </comment>
+        </item>
+
+        <item id="8" tag="Servers">
                 <body>Servrar</body>
                 <comment> </comment>
         </item>
